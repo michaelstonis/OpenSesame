@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	x:Class="OpenSesame.Views.LoginView">
+<rxui:ReactiveContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rxui="clr-namespace:ReactiveUI.XamForms" 
+    xmlns:viewModels="clr-namespace:OpenSesame.ViewModels" 
+	x:Class="OpenSesame.Views.LoginView"
+    x:TypeArguments="viewModels:LoginViewModel">
 		<ContentPage.Resources>
         <StyleSheet Source="../Assets/styles.css"/>  
     </ContentPage.Resources>
-
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
@@ -23,16 +25,16 @@
                     WidthRequest="160"
                     HeightRequest="160">
                     <Image 
-                    WidthRequest="60"
+                        x:Name="profilePhoto"
+                        WidthRequest="60"
                         HeightRequest="60"
-                        Aspect="AspectFill"
-                    Source="{Binding ProfilePhotoUrl}"/>
+                        Aspect="AspectFill" />
                 </Frame>
-                <Entry Placeholder="Username" Text="{Binding Username}"/>
-                <Entry Placeholder="Password" IsPassword="true" Text="{Binding Password}"/>
-                <Button Text="Login" Command="{Binding LoginCommand}"/>
-                <Button Text="Settings" Command="{Binding SettingsCommand}" StyleClass="SecondaryButton" /> 
+                <Entry x:Name="username" Placeholder="Username"/>
+                <Entry x:Name="password" Placeholder="Password" IsPassword="true"/>
+                <Button x:Name="login" IsEnabled="false" Text="Login"/>
+                <Button x:Name="settings" Text="Settings" StyleClass="SecondaryButton"/> 
             </StackLayout>
         </Grid>
     </ScrollView>
-</ContentPage>
+</rxui:ReactiveContentPage>
